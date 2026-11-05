@@ -33,7 +33,7 @@ Contributions via pull requests are much appreciated. Once the approach is agree
 ---
 
 ## Local Setup Prerequisites
-  - The application currently supports **Node.js v18.x**.
+  - The application supports **Node.js 22 or newer**; the LTS release pinned in `.nvmrc` (**Node.js 24**) is recommended and is what CI and the Docker images use. Node.js 26 is not supported yet: `jsonwebtoken` → `jwa` → `buffer-equal-constant-time` still reads the removed `SlowBuffer` at import time and crashes the server.
   - `pnpm` packages manager, (from pnpm [guide](https://pnpm.io/installation) pick any installation method).
 
 ## Contribute to Backend

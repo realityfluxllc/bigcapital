@@ -60,7 +60,7 @@ Run from repo root unless noted.
 - **Server path alias**: `@/*` maps to `packages/server/src/*` (both in `tsconfig.json` and Jest `moduleNameMapper`).
 - **Webapp path alias**: `@` maps to `packages/webapp/src` (Vite resolve alias).
 - **Commit linting**: Husky enforces conventional commits via `commitlint` on `commit-msg` hook.
-- **Node version**: `engines` specifies 16.x/17.x/18.x, but CONTRIBUTING.md says 18.x. Use 18.x.
+- **Node version**: `engines` requires Node 22+; use the LTS pinned in `.nvmrc` (Node 24), which is what CI and the Docker images run. Node 26 currently crashes at startup because `buffer-equal-constant-time` (via `jsonwebtoken`/`jwa`) depends on the removed `SlowBuffer`.
 
 ## Data flow: server → sdk-ts → webapp
 

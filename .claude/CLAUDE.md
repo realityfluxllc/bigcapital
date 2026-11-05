@@ -2,11 +2,13 @@
 
 ## Node.js Version
 
-Always use Node.js 18.16.1 for this project. Before running any npm/pnpm/node commands:
+Use the Node.js version pinned in `.nvmrc` (currently Node 24 LTS). Before running any npm/pnpm/node commands:
 
 ```bash
-nvm use 18.16.1
+nvm use
 ```
+
+Node 22+ is supported (`engines` in `package.json`); CI and the Docker images run Node 24. Node 26 is not usable yet (see AGENTS.md).
 
 ## Package Manager
 
