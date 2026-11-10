@@ -81,13 +81,22 @@ const AccountsTransactionsUncategorized = lazy(() =>
     default: m.AllTransactionsUncategorized,
   })),
 );
+const AccountTransactionsDashboard = lazy(() =>
+  import('./Dashboard/AccountTransactionsDashboard').then((m) => ({
+    default: m.AccountTransactionsDashboard,
+  })),
+);
 
 function AccountTransactionsContent() {
   const { filterTab } = useAccountTransactionsContext();
 
-  return filterTab === 'uncategorized' ? (
-    <AccountsTransactionsUncategorized />
-  ) : (
-    <AccountsTransactionsAll />
-  );
+  switch (filterTab) {
+    case 'dashboard':
+      return <AccountTransactionsDashboard />;
+    case 'uncategorized':
+      return <AccountsTransactionsUncategorized />;
+    case 'all':
+    default:
+      return <AccountsTransactionsAll />;
+  }
 }

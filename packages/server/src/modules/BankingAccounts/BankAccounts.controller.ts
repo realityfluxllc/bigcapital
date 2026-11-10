@@ -3,6 +3,7 @@ import { BankAccountsApplication } from './BankAccountsApplication.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BankAccountsQueryDto } from './dtos/BankAccountsQuery.dto';
 import { BankAccountResponseDto } from './dtos/BankAccountResponse.dto';
+import { BankAccountSummaryResponseDto } from './dtos/BankAccountSummaryResponse.dto';
 
 @Controller('banking/accounts')
 @ApiTags('Bank Accounts')
@@ -22,6 +23,12 @@ export class BankAccountsController {
 
   @Get(':bankAccountId/summary')
   @ApiOperation({ summary: 'Retrieve the bank account summary.' })
+  @ApiResponse({
+    status: 200,
+    description:
+      'Review counters, feed-independent GL activity and recent money in/out of the bank account.',
+    type: BankAccountSummaryResponseDto,
+  })
   getBankAccountSummary(@Param('bankAccountId') bankAccountId: number) {
     return this.bankAccountsApplication.getBankAccountSumnmary(bankAccountId);
   }
