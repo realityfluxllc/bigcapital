@@ -17,14 +17,9 @@ import {
 import { useGetBankAccountSummaryMeta } from '@/hooks/query/banking';
 
 /**
- * `BankingAccountSummaryResponse` SDK type only declares name + uncategorized +
- * recognized counts. Runtime sends more fields; surface them as optional so
- * consumers can read them without per-file casts.
+ * Bank account summary meta as served by `GET /banking/accounts/:id/summary`.
  */
-export type BankAccountSummaryMeta = BankingAccountSummaryResponse & {
-  totalExcludedTransactions?: number;
-  totalPendingTransactions?: number;
-};
+export type BankAccountSummaryMeta = BankingAccountSummaryResponse;
 
 export interface AccountTransactionsContextValue {
   accountId: number;

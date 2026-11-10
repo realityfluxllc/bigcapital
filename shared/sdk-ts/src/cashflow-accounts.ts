@@ -35,11 +35,33 @@ export type UncategorizedTransactionResponse = OpResponseBody<
   OpForPath<typeof BANKING_ACCOUNTS_ROUTES.UNCATEGORIZED_BY_ID, 'get'>
 >;
 
+/** Money in/out of a bank account over a date window. */
+export interface BankingAccountActivitySummary {
+  fromDate: string;
+  toDate: string;
+  moneyIn: number;
+  moneyOut: number;
+  net: number;
+  transactionsCount: number;
+  moneyInFormatted: string;
+  moneyOutFormatted: string;
+  netFormatted: string;
+}
+
 /** Bank account summary response (schema does not define response body). */
 export interface BankingAccountSummaryResponse {
   name: string;
+  currencyCode: string;
   totalUncategorizedTransactions: number;
   totalRecognizedTransactions: number;
+  totalExcludedTransactions: number;
+  totalPendingTransactions: number;
+  /** Total GL entries recorded against the account. */
+  totalTransactions: number;
+  /** YYYY-MM-DD of the most recent GL entry, null if none. */
+  lastTransactionDate: string | null;
+  lastTransactionDateFormatted: string | null;
+  last30Days: BankingAccountActivitySummary;
 }
 
 export async function fetchBankingAccounts(
